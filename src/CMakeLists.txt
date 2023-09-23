@@ -11,7 +11,7 @@ target_link_libraries(${PROJECT_NAME}
         ${catkin_LIBRARIES}
         ${PCL_LIBRARIES}
         ${PYTHON_LIBRARIES}
-        tbb
+        # tbb
         glog
         yaml-cpp
         )
