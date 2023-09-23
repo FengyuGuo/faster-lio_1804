@@ -85,7 +85,21 @@ roslaunch.
 
 **Requirement of cpp 17 is remove from this repo. So you can just clone and build this repo in Ubuntu 1804.**
 
-**Performance is not testes with or without cpp 17**
+**Performance is not tested with or without cpp 17**
+
+Performance in laptop Intel(R) Core(TM) i7-10875H CPU @ 2.30GHz
+
+I0923 23:14:34.937397 28692 utils.h:52] >>> ===== Printing run time =====
+I0923 23:14:34.937402 28692 utils.h:54] > [     IVox Add Points ] average time usage: 0.0130164 ms , called times: 757  
+I0923 23:14:34.937409 28692 utils.h:54] > [     Incremental Mapping ] average time usage: 0.0677832 ms , called times: 757  
+I0923 23:14:34.937435 28692 utils.h:54] > [     ObsModel (IEKF Build Jacobian) ] average time usage: 0.0535506 ms , called times: 3001  
+I0923 23:14:34.937440 28692 utils.h:54] > [     ObsModel (Lidar Match) ] average time usage: 0.828845 ms , called times: 3001  
+I0923 23:14:34.937461 28692 utils.h:54] > [ Downsample PointCloud ] average time usage: 0.262615 ms , called times: 757  
+I0923 23:14:34.937489 28692 utils.h:54] > [ IEKF Solve and Update ] average time usage: 3.95935 ms , called times: 757  
+I0923 23:14:34.937517 28692 utils.h:54] > [ Preprocess (Livox) ] average time usage: 0.221774 ms , called times: 760  
+I0923 23:14:34.937522 28692 utils.h:54] > [ Undistort Pcl ] average time usage: 1.216 ms , called times: 758  
+I0923 23:14:34.937525 28692 utils.h:59] >>> ===== Printing run time end =====  
+
 
 ~~Since FasterLIO use cpp 17 as its standard (which requires a higher version of g++), you should upgrade the compiler and
 use the earlier tbb library provided in the thirdparty of this repo. Please follow the steps here:~~
