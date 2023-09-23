@@ -6,7 +6,7 @@
 #define FASTER_LIO_IVOX3D_H
 
 #include <glog/logging.h>
-#include <execution>
+// #include <execution>
 #include <list>
 #include <thread>
 
@@ -242,7 +242,8 @@ bool IVox<dim, node_type, PointType>::GetClosestPoint(const PointVector& cloud, 
     }
     closest_cloud.resize(cloud.size());
 
-    std::for_each(std::execution::par_unseq, index.begin(), index.end(), [&cloud, &closest_cloud, this](size_t idx) {
+    std::for_each(//std::execution::par_unseq, 
+    index.begin(), index.end(), [&cloud, &closest_cloud, this](size_t idx) {
         PointType pt;
         if (GetClosestPoint(cloud[idx], pt)) {
             closest_cloud[idx] = pt;
@@ -255,7 +256,8 @@ bool IVox<dim, node_type, PointType>::GetClosestPoint(const PointVector& cloud, 
 
 template <int dim, IVoxNodeType node_type, typename PointType>
 void IVox<dim, node_type, PointType>::AddPoints(const PointVector& points_to_add) {
-    std::for_each(std::execution::unseq, points_to_add.begin(), points_to_add.end(), [this](const auto& pt) {
+    std::for_each(//std::execution::unseq, 
+    points_to_add.begin(), points_to_add.end(), [this](const auto& pt) {
         auto key = Pos2Grid(ToEigen<float, dim>(pt));
 
         auto iter = grids_map_.find(key);

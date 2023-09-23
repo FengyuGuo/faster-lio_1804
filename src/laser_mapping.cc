@@ -1,6 +1,6 @@
 #include <tf/transform_broadcaster.h>
 #include <yaml-cpp/yaml.h>
-#include <execution>
+//#include <execution>
 #include <fstream>
 
 #include "laser_mapping.h"
@@ -495,7 +495,8 @@ void LaserMapping::MapIncremental() {
         index[i] = i;
     }
 
-    std::for_each(std::execution::unseq, index.begin(), index.end(), [&](const size_t &i) {
+    std::for_each(//std::execution::unseq, 
+    index.begin(), index.end(), [&](const size_t &i) {
         /* transform to world frame */
         PointBodyToWorld(&(scan_down_body_->points[i]), &(scan_down_world_->points[i]));
 
@@ -563,7 +564,8 @@ void LaserMapping::ObsModel(state_ikfom &s, esekfom::dyn_share_datastruct<double
             auto t_wl = (s.rot * s.offset_T_L_I + s.pos).cast<float>();
 
             /** closest surface search and residual computation **/
-            std::for_each(std::execution::par_unseq, index.begin(), index.end(), [&](const size_t &i) {
+            std::for_each(//std::execution::par_unseq, 
+            index.begin(), index.end(), [&](const size_t &i) {
                 PointType &point_body = scan_down_body_->points[i];
                 PointType &point_world = scan_down_world_->points[i];
 
@@ -631,7 +633,8 @@ void LaserMapping::ObsModel(state_ikfom &s, esekfom::dyn_share_datastruct<double
             const common::V3F off_t = s.offset_T_L_I.cast<float>();
             const common::M3F Rt = s.rot.toRotationMatrix().transpose().cast<float>();
 
-            std::for_each(std::execution::par_unseq, index.begin(), index.end(), [&](const size_t &i) {
+            std::for_each(//std::execution::par_unseq, 
+            index.begin(), index.end(), [&](const size_t &i) {
                 common::V3F point_this_be = corr_pts_[i].head<3>();
                 common::M3F point_be_crossmat = SKEW_SYM_MATRIX(point_this_be);
                 common::V3F point_this = off_R * point_this_be + off_t;
