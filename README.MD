@@ -1,5 +1,7 @@
 ## FasterLIO
 
+This is a modified version of FasterLIO. Requirement for cpp 17 is remove. livox_ros_driver is removed from thirdparty.
+
 This is the code repository of FasterLIO by Chunge Bai, Tao Xiang, Yajie Chen, Haoqian Wang, Fang Zhang and Xiang Gao.
 
 Faster-LIO is a light-weight Lidar-inertial odometry for lidar pose tracking and point cloud mapping. It is developed on
@@ -50,6 +52,7 @@ FasterLIO is tested in Ubuntu 18.04 and Ubuntu 20.04. Please install the followi
 3. eigen: ```sudo apt-get install libeigen3-dev```
 4. pcl: ```sudo apt-get install libpcl-dev```
 5. yaml-cpp: ```sudo apt-get install libyaml-cpp-dev```
+6. livox_ros_driver: **clone the repo and put in the same catkin workspace**
 
 ## Compile
 
@@ -80,11 +83,16 @@ roslaunch.
 
 3. Compile in Ubuntu 18.04 or earlier
 
-Since FasterLIO use cpp 17 as its standard (which requires a higher version of g++), you should upgrade the compiler and
-use the earlier tbb library provided in the thirdparty of this repo. Please follow the steps here:
+**Requirement of cpp 17 is remove from this repo. So you can just clone and build this repo in Ubuntu 1804.**
 
-- Upgrade the g++ compiler to 9.0 or higher by:
+**Performance is not testes with or without cpp 17**
 
+~~Since FasterLIO use cpp 17 as its standard (which requires a higher version of g++), you should upgrade the compiler and
+use the earlier tbb library provided in the thirdparty of this repo. Please follow the steps here:~~
+
+~~- Upgrade the g++ compiler to 9.0 or higher by:~~
+
+**command below is not necessary for this repo**
 ```bash
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update
